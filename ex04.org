@@ -1,0 +1,163 @@
+#+TITLE: Exercise 4: Iterative Statement
+#+AUTHOR: S Milton Rajendram
+
+#+LaTeX_HEADER: \usepackage{palatino}
+#+LaTeX_HEADER: \usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+#+LaTeX_HEADER: \usepackage{setspace}
+#+OPTIONS: toc:nil
+
+#+BEGIN_EXPORT latex
+\linespread{1.2}
+#+END_EXPORT
+#+PROPERTY: header-args :exports none
+* Exercises
+1. Define a function =indent(n)= to print $n$ times the pattern
+   (=|--=) in a line. =n=, the number of times is given as a
+   parameter. Construct an input file in which each line is formated
+   as a pair of numbers referred to as =level= and =key=. For each
+   line 
+   #+BEGIN_EXAMPLE
+   level key 
+   #+END_EXAMPLE
+   print =level= number of times the pattern =|--= followed by the
+   =key=. \hfill (/count/).
+   #+BEGIN_EXPORT latex
+   \linespread{1}
+   #+END_EXPORT
+   #+BEGIN_EXAMPLE
+   0 5
+   1 10
+   1 15
+   2 20
+   2 25
+   2 30
+   2 35
+   3 40
+   3 45
+   3 50
+   3 55
+   #+END_EXAMPLE
+   #+BEGIN_EXPORT latex
+   \linespread{1.2}
+   #+END_EXPORT
+   When the lines in the file are read and printed, the display will
+   be as shown below.
+   #+BEGIN_EXPORT latex
+   \linespread{1}
+   #+END_EXPORT
+   #+BEGIN_EXAMPLE
+   5
+   |--10
+   |--15
+   |--|--20
+   |--|--25
+   |--|--30
+   |--|--35
+   |--|--|--40
+   |--|--|--45
+   |--|--|--50
+   |--|--|--55
+   #+END_EXAMPLE
+   #+BEGIN_EXPORT latex
+   \linespread{1.2}
+   #+END_EXPORT
+   # Test the function by printing 10 lines of stars for n = 0, 1, 2, \ldots 10.
+   # 2. Define a function =power (base, exponent)= to compute x^n. \hfill
+   (/count/)
+2. Represent a list of numbers by an array of numbers terminated by -1
+   as the end of list marker. Define a function =int array_len(int
+   a[])= that takes such an array as the parameter and returns the
+   length of the array, that is, the number of items in the array
+   \hfill (/sentinel/)
+3. *Reading input data*:
+   1. Read a list of numbers using =scanf()=. Format the list of
+      numbers as a line of numbers in the input file, as illustrated
+      below. Read the =n= items with a loop. In each iteration of the
+      loop, let =scanf()= read one number. \hfill (/sentinel/)
+      #+LATEX: \linespread{1}
+      #+BEGIN_EXAMPLE
+      10 20 30 40 50 60
+      #+END_EXAMPLE
+      #+LATEX: \linespread{1.2}
+   2. Read a list of =k=-tuples. Format a =k=-tuple of items as a line
+      of =k= items, and the list as a sequence of lines, in the input
+      file, as illustrated below. Read the list with a loop. In each iteration, let =scan()=
+      read =k= items from the file.
+      #+LATEX: \linespread{1}
+      #+BEGIN_EXAMPLE
+      10 20 30
+      30 40 50
+      60 70 90
+      #+END_EXAMPLE
+      #+LATEX: \linespread{1.2}
+   3. Read a list of lists. Format a simple list as a line of
+      items. Format list of lists as a sequence of lines, in the input
+      file, as illustrated below. 
+      #+LATEX: \linespread{1}
+      #+BEGIN_EXAMPLE
+      10 20 30 40 50
+      30 40 50
+      60 70 90 50 60 70
+      #+END_EXAMPLE
+      #+LATEX: \linespread{1}
+      Read each line into a variable =line= and parse the line into integers.
+      #+BEGIN_EXAMPLE
+      for (i = 0; sscanf(line, "%d%n", &a[i], &nbytes) == 1; i++)
+         line += nbytes;
+      #+END_EXAMPLE
+      #+LATEX: \linespread{1.2}
+4. Print a subarray. Write a function =print_array(a, low, high)= that
+   prints the subarray =a[low:high]=, that is, the items of array =a=
+   from =low= to =high=. =low= and =high= are called the /lower bound/
+   and /upper bound/ of the subarray. We follow the convention of
+   upper bound excluded. That is, \hfill (/visitor/)
+   #+BEGIN_EXAMPLE
+   a[l:h] = a[l], a[l+1], ..., a[h-1]
+   #+END_EXAMPLE
+   Note that =a[h]= is not a part of =a[l:h]=.
+5. *Sum, mean, variance*:
+   1. Define a function =sum(array, low, high)= that computes the sum
+      of the numbers of the subarray =array[low:high]=. Using this
+      function, define a function =mean(array, low, high)= to compute
+      the mean of the numbers in the subarray =array[low:high]=.
+   2. Write a function =variance(array, low, high)= to compute the
+      variance of the numbers of the subarray =array[low:high]=. Let
+      =variance()= use =mean()=. Test the functions =mean()= and
+      =variance()= from =main()= which should read a list of numbers
+      from a file and print the mean and variance. Test it for several
+      lists of numbers. \hfill (/accumulator, map/)
+   3. Write a function to find the number of items above the mean.
+6. *Prime number*: Define a function =is_prime(n)= that tests whether
+   a non-negative integer =n= is a prime number and returns =true= if
+   =n= is prime and =false= if =n= is not prime. Test it for the first
+   100 integers. \hfill (/search/)
+7. *Linear search*: \hfill (/search/)
+   1. Define a function =linear_search(a, n, target)=. It searches the
+      subarray =a[0:n]= for the =target=. If the target is in the
+      array, the function returns the index of the target. If the
+      target is not in the array, the function should return an
+      invalid index (an invalid index is one outside the range $0 \le
+      index < n$). Test the function from =main()=. Let =main()= read
+      the input from stdin. Write two versions of =linear_search()=,
+      one using =break= and the other without using =break=.
+   2. Implement a third version of =linear_search(array, n, target)=
+      that uses the =target= as the sentinel at =a[n]=. Write the
+      specification for the function.
+8. *Minimum*: We are given an array =a[0:n]= of =n= comparable
+   items. Define a function =minimum(a, low, high)= that returns the
+   index of the smallest item in the subarray =a[low:high]=. Test the
+   function from =main()= for several lists of numbers. Each test
+   should read a list of numbers from stdin. \hfill (/accumulator/)
+9. *Armstrong number*
+   1. Define a function =int to_digits(n, s)= to convert an integer
+      to a string of single digit numbers. For example, it converts
+      371 to [3,7,1]. The function has two outputs:
+      1. =s=, an array of single digit numbers, which is passed as a
+         parameter, and
+      2. the number of single digits, which is returned as a value.
+      Test the function from =main()=.
+   2. Define a function =cube(x)= that returns $x^3$. 
+   3. Write a function =is_armstrong(n)= that tests whether the
+      integer =n= is an Armstrong number. An Armstrong number is
+      equal to the sum of cubes of its digits. Test the function to
+      find out all the Armstrong numbers from 0 to 500.
